@@ -28,3 +28,26 @@ def test_login(driver):
 
     driver.save_screenshot('screenshot/login.png')
     assert "Selamat Datang" in driver.title
+
+def test_login_wrong(driver):
+    driver.get("https://app.jubelio.com/login")
+    
+    email_input = driver.find_element(By.NAME, "email")
+    password_input = driver.find_element(By.NAME, "password")
+    email_input.clear()
+    password_input.clear()
+    email_input.send_keys("testingwithfai@gmail.com")
+    password_input.send_keys("123Faizal!")
+
+    login_button = driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div[1]/div/div[2]/div/form/button')
+    login_button.click()
+
+    
+    time.sleep(2)
+    expected_text =  "Password atau email anda salah."
+    page_source = driver.page_source
+
+    driver.save_screenshot('screenshot/login-wrong.png')
+    assert expected_text in page_source
+
+    
