@@ -64,7 +64,8 @@ def test_stock2(driver):
     
     email_input = driver.find_element(By.NAME, "email")
     password_input = driver.find_element(By.NAME, "password")
-#     email_input.send_keys("qa.rakamin.jubelio@gmail.com")
+    email_input.clear()
+    email_input.send_keys("qa.rakamin.jubelio@gmail.com")
     password_input.send_keys("Jubelio123!")
 
     login_button = driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div[1]/div/div[2]/div/form/button')
